@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+//根据properties中设置的参数来选择不同的上传脚本
+try {
+    if ('true' == isRelease) {
+        apply from: 'uploadArchives_release.gradle'
+    } else {
+        apply from: 'uploadArchives.gradle'
+    }
+}catch (Exception e){
+    apply from: 'uploadArchives.gradle'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled isRelease=='true'?true:false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            res.srcDirs += 'src/main/res-theme'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "io.reactivex.rxjava2:rxjava:${rxjava2Version}"
+    api "com.squareup.okhttp3:okhttp:${okhttp3Version}"
+    // retrofit
+    api "com.squareup.retrofit2:retrofit:${retrofit2Version}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit2Version}"
+    implementation ("com.squareup.retrofit2:adapter-rxjava2:${retrofit2Version}"){
+        exclude module: 'rxjava'
+    }
+    api "io.reactivex.rxjava2:rxandroid:${rxandroid2Version}"
+    implementation("com.squareup.retrofit2:converter-simplexml:${retrofit2Version}") {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+    api "com.google.code.gson:gson:${gsonVersion}"
+    implementation "com.android.support:support-annotations:${supportLibraryVersion}"
+    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
+
+}
+task sourceJar (type:Jar) {
+    classifier = 'sources'
+    from 'src/main/java'
+}
+
+artifacts {
+    archives sourceJar
+}
+
