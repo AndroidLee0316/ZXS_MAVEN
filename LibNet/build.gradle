@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: 'uploadArchives.gradle'
+
 //根据properties中设置的参数来选择不同的上传脚本
 //try {
 //    if ('true' == isRelease) {
