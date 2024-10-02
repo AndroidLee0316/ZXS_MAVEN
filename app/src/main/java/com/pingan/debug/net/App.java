@@ -33,6 +33,7 @@ public class App extends Application {
 
             @Override
             public void checkServerTrusted(final X509Certificate[] chain, final String authType) {
+
             }
 
             @Override public X509Certificate[] getAcceptedIssuers() {
