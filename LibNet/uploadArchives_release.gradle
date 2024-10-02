@@ -11,10 +11,6 @@ group GROUP_ID  //一定要加入，否者发布编译时报错
 version VERSION
 
 publishing {
-    // 配置maven 仓库
-    repositories { RepositoryHandler handler ->
-        handler.mavenLocal()  // 发布到默认的 本地maven 仓库 ，路径： USER_HOME/.m2/repository/  或 setting.xml中配置的路径
-    }
 
     // publications 用于定义发布任务的配置块
     publications {
