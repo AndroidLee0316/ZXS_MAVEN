@@ -1,7 +1,11 @@
 apply plugin: 'maven-publish'
 
+task generateSourcesJar(type: Jar){
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
 // 唯一标识
-def GROUP_ID = "com.thub.com.AndroidLee0316"
+def GROUP_ID = "com.pasc.lib"
 // 项目名称
 def ARTIFACT_ID = "zxs_net"
 // 版本号
@@ -10,22 +14,22 @@ def VERSION = "1.0.0"
 group GROUP_ID  //一定要加入，否者发布编译时报错
 version VERSION
 
-publishing {
 
-    // publications 用于定义发布任务的配置块
-    publications {
-        // 这个 aarAndroid 可以随便填，只是一个任务名字而已(如果有多渠道，整段在下面多复制一份)
-        // MavenPublication必须有，这个是调用的任务类
-        aarAndroid(MavenPublication) {
-            // 这里头是artifacts的配置信息，不填会采用默认的
-            groupId GROUP_ID
-            artifactId ARTIFACT_ID
-            version VERSION
 
-            // 增加上传源码的 task
-            artifact sourceJar
-            // 必须有这个 否则不会上传AAR包  将bundleReleaseAar任务的单个输出文件作为发布的AAR文件。这样，该AAR文件就会成为 MavenPublication 的 artifact 并进行发布
-            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId GROUP_ID // 这个是依赖库的组 id
+                artifactId ARTIFACT_ID       // 依赖库的名称（jitpack 都不会使用到）
+                version VERSION           //当前版本依赖库版本号，这个jitpack不会使用到，只是我们开发者自己查看
+                // 增加上传源码的 task
+                artifact sourceJar
+                // 必须有这个 否则不会上传AAR包  将bundleReleaseAar任务的单个输出文件作为发布的AAR文件。这样，该AAR文件就会成为 MavenPublication 的 artifact 并进行发布
+                afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+            }
         }
     }
 }

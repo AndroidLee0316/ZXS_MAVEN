@@ -4,19 +4,6 @@ apply from: 'module_config.gradle'
 buildscript {
 
     repositories {
-//        maven { url 'http://10.25.84.18:8089/nexus/content/repositories/jcenter/' }
-//        maven { url 'http://10.25.84.18:8089/nexus/content/repositories/google/' }
-//        maven { url 'http://10.25.84.18:8089/nexus/content/repositories/central/' }
-//        maven{
-//            url "http://10.25.84.18:8089/nexus/content/repositories/Android-Snapshots/"
-//            //url "http://10.25.84.18:8089/nexus/content/groups/pa-public/"
-//            credentials{
-//                username 'admin'
-//                password 'admin123'
-//            }
-//        }
-//        maven { url "http://10.25.84.18:8089/nexus/content/repositories/thirdparty" }
-//        maven { url "http://10.25.84.18:8089/nexus/content/repositories/ANDROID-RELEASE" }
         google()
         mavenCentral()
         maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
@@ -37,25 +24,11 @@ buildscript {
 
 allprojects {
     repositories {
-//        maven { url 'http://10.25.84.18:8089/nexus/content/repositories/jcenter/' }
-//        maven { url 'http://10.25.84.18:8089/nexus/content/repositories/google/' }
-//        maven { url 'http://10.25.84.18:8089/nexus/content/repositories/central/' }
-//        maven{
-//            url "http://10.25.84.18:8089/nexus/content/repositories/Android-Snapshots/"
-////          url "http://10.25.84.18:8089/nexus/content/groups/pa-public/"
-//            credentials{
-//                username 'admin'
-//                password 'admin123'
-//            }
-//
-//        }
-//        maven { url "http://10.25.84.18:8089/nexus/content/repositories/thirdparty" }
-//        maven { url "http://10.25.84.18:8089/nexus/content/repositories/ANDROID-RELEASE" }
         maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
         jcenter(){url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
         mavenCentral()
-        maven { url "https://jitpack.io" }
+        maven { url "https://www.jitpack.io" }
 
     }
 
