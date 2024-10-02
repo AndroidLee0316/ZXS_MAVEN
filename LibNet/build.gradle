@@ -1,7 +1,41 @@
 apply plugin: 'com.android.library'
-apply from: 'uploadArchives_release.gradle'
-
+apply plugin: 'maven-publish'
+//apply from: 'uploadArchives_release.gradle'
 //根据properties中设置的参数来选择不同的上传脚本
+apply plugin: 'com.github.dcendents.android-maven'//this
+group='com.github.AndroidLee0316'//this
+version = "1.0.0"//this
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.pasc.lib'
+                artifactId = 'net'
+                version = '1.0.1'
+//                // 增加上传源码的 task
+//                artifact sourceJar
+//                // 必须有这个 否则不会上传AAR包  将bundleReleaseAar任务的单个输出文件作为发布的AAR文件。这样，该AAR文件就会成为 MavenPublication 的 artifact 并进行发布
+//                afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+            }
+        }
+    }
+}
+//android库用这种
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            // 这个mavenJava可以随便填，只是一个任务名字而已
+//            // MavenPublication必须有，这个是调用的任务类
+//            release(MavenPublication) {
+//                from components.release
+//                // 这里头是artifacts的配置信息，不填会采用默认的
+//                groupId = 'com.pasc.lib'
+//                artifactId = 'net'
+//                version = '1.0.1'
+//            }
+//        }
+//    }
+//}
 //try {
 //    if ('true' == isRelease) {
 //        apply from: 'uploadArchives_release.gradle'
@@ -43,23 +77,23 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "io.reactivex.rxjava2:rxjava:${rxjava2Version}"
+    api "io.reactivex.rxjava2:rxjava:${rxjava2Version}"
     api "com.squareup.okhttp3:okhttp:${okhttp3Version}"
     // retrofit
     api "com.squareup.retrofit2:retrofit:${retrofit2Version}"
-    implementation "com.squareup.retrofit2:converter-gson:${retrofit2Version}"
-    implementation ("com.squareup.retrofit2:adapter-rxjava2:${retrofit2Version}"){
+    api "com.squareup.retrofit2:converter-gson:${retrofit2Version}"
+    api ("com.squareup.retrofit2:adapter-rxjava2:${retrofit2Version}"){
         exclude module: 'rxjava'
     }
     api "io.reactivex.rxjava2:rxandroid:${rxandroid2Version}"
-    implementation("com.squareup.retrofit2:converter-simplexml:${retrofit2Version}") {
+    api("com.squareup.retrofit2:converter-simplexml:${retrofit2Version}") {
         exclude group: 'xpp3', module: 'xpp3'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
     api "com.google.code.gson:gson:${gsonVersion}"
-    implementation "com.android.support:support-annotations:${supportLibraryVersion}"
-    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    api "com.android.support:support-annotations:${supportLibraryVersion}"
+    api "com.android.support:appcompat-v7:${supportLibraryVersion}"
 
 }
 task sourceJar (type:Jar) {
