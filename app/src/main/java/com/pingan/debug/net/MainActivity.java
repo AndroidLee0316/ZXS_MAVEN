@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.pingan.debug.net.downdemo.DownloadActivity;
 import com.pingan.debug.net.weather.WeatherActivity;
 import java.util.ArrayList;

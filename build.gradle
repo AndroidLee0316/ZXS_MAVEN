@@ -18,9 +18,14 @@ buildscript {
 //        maven { url "http://10.25.84.18:8089/nexus/content/repositories/thirdparty" }
 //        maven { url "http://10.25.84.18:8089/nexus/content/repositories/ANDROID-RELEASE" }
         google()
-        jcenter()
         mavenCentral()
-        maven { url 'https://maven.google.com' }
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
+        jcenter(){url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        //google 国内代理
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+            name 'Google'
+        }
         maven { url uri('./app/repo') }
     }
 
@@ -45,8 +50,9 @@ allprojects {
 //        }
 //        maven { url "http://10.25.84.18:8089/nexus/content/repositories/thirdparty" }
 //        maven { url "http://10.25.84.18:8089/nexus/content/repositories/ANDROID-RELEASE" }
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
+        jcenter(){url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
-        jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
 

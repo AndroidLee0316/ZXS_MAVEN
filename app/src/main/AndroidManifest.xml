@@ -35,7 +35,7 @@
       </intent-filter>
     </activity>
     <activity android:name=".weather.WeatherActivity"/>
-    <activity android:name=".downdemo.DownloadActivity"/>
-  </application>
+        <activity android:name=".downdemo.DownloadActivity"/>
+    </application>
 
 </manifest>

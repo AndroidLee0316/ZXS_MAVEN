@@ -2,11 +2,14 @@ package com.pasc.lib.net.converter;
 
 import com.google.gson.Gson;
 import com.pasc.lib.net.DES3Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 

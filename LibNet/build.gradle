@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 //根据properties中设置的参数来选择不同的上传脚本
-try {
-    if ('true' == isRelease) {
-        apply from: 'uploadArchives_release.gradle'
-    } else {
-        apply from: 'uploadArchives.gradle'
-    }
-}catch (Exception e){
-    apply from: 'uploadArchives.gradle'
-}
+//try {
+//    if ('true' == isRelease) {
+//        apply from: 'uploadArchives_release.gradle'
+//    } else {
+//        apply from: 'uploadArchives.gradle'
+//    }
+//}catch (Exception e){
+//    apply from: 'uploadArchives.gradle'
+//}
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -19,6 +19,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -33,8 +34,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
